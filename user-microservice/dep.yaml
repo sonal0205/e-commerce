@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-mcs
+spec:
+  selector:
+    matchLabels:
+      app: user-deployment
+  template:
+    metadata:
+      labels:
+        app: user-deployment
+    spec:
+      containers:
+      - name: user-app-1
+        image: users/user-mcs
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 3000
+        env:
+        - name: DATABASE_NAME
+          value: ecommerce
+        - name: HOST
+          value: mysql
+        - name: DB_USER
+          value: root
+        - name: DB_PASSWORD
+          value: "123456"
+          
