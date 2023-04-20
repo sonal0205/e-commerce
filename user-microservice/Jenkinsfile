@@ -1,0 +1,30 @@
+pipeline {
+
+  environment {
+    dockerimagename = "users/user-mcs"
+    dockerImage = ""
+  }
+
+  agent any
+
+  stages {
+
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build dockerimagename
+        }
+      }
+    }
+
+    stage('Deploying Node.js container to Kubernetes') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "dep.yaml", "service.yaml")
+        }
+      }
+    }
+
+  }
+
+}
