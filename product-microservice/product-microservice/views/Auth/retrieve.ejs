@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product Retrieval</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Product Retrieval</h1>
+		<div class="row mt-5">
+			<div class="col-md-6 offset-md-3">
+				<form action="/retrieve-product" method="post">
+					<div class="form-group">
+						<label for="productId">Product ID</label>
+						<input type="text" name="productId" class="form-control" id="productId" placeholder="Enter Product ID">
+					</div>
+					<button type="submit" class="btn btn-primary">Retrieve Product</button>
+				</form>
+				<% if(product) { %>
+					<hr>
+					<h4>Product Information:</h4>
+					<p><b>Product ID:</b> <%= product.productId %></p>
+					<p><b>Product Name:</b> <%= product.productName %></p>
+					<p><b>Product Description:</b> <%= product.productDescription %></p>
+					<p><b>Product Price:</b> <%= product.productPrice %></p>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
